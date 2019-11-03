@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "Learning other people's productivity tools"
-date:   2019-10-29 08:00:00 +0000
 categories: jekyll update
 ---
 

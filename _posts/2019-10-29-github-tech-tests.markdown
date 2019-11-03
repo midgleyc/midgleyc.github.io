@@ -1,7 +1,6 @@
 ---
 layout: post
 title:  "GitHub tech tests"
-date:   2019-10-29 08:00:00 +0000
 categories: jekyll update
 ---
 Many companies put tech challenges (to be completed when applying for the job) on the public web. If there's a challenge on GitHub, there's a good chance that people will put their solutions on GitHub as well, which can be useful to compare your own solution against / take inspiration / blatantly cheat.<a href="#cheating" id="cheatingref"><sup>1</sup></a>
