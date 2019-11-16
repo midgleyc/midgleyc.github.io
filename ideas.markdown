@@ -8,7 +8,7 @@ permalink: /ideas/
 ---
 
 Ideas for posts I could write:
-* Use factory methods instead of injecting concrete classes
+* Use factory method pattern (protected) instead of injecting concrete classes
 * Where Java beats C# (enums, annotation processing, I like internal visibility without assemblies)
 * Horrible Ideas #1: Linked files and the NHS banner API (manual testing)
 * Comparison of culture in ASP.NET Core and Spring
