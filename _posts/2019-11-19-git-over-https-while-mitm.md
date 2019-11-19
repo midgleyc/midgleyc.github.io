@@ -20,7 +20,7 @@ I found [serverfault question about displaying a remote certificate using OpenSS
 
 > echo | openssl s_client -showcerts -servername github.com -connect github.com:443 2>/dev/null | openssl x509 -purpose -noout -text
 
-![images/2019-11-19-openssl-show-certs.png]
+![](images/2019-11-19-openssl-show-certs.png)
 
 This told me the name of the company in the CN: Forcepoint Cloud Web Enforcer CA.
 
