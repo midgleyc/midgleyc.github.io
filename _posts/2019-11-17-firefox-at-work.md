@@ -32,6 +32,25 @@ Tab hiding requires an extension with the "hide and show browser tabs" permissio
 
 Tab Groups have been in Firefox for a while, but have a fairly small user base ([0.01% of users in Firefox 45](https://bugzilla.mozilla.org/show_bug.cgi?id=1221050)). They were first introduced in Firefox 4 Beta as [Tab Candy](https://www.geek.com/news/mozilla-shows-off-firefox-tab-candy-1272614/), then in Firefox 4 proper as Panorama. This was then [removed from Firefox 45](https://www.ghacks.net/2015/11/08/mozilla-to-remove-tab-groups-panorama-in-firefox-45/), but Quicksaver [produced an addon](http://web.archive.org/web/20170930123202/https://addons.mozilla.org/en-US/firefox/addon/tab-groups-panorama/), based off the same codebase, with the same features. This addon [stopped working](http://web.archive.org/web/20171017070348/http://fasezero.com/lastnotice.html) when Firefox 57 removed support for XUL-style extensions. The ability was [added back](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/hide) in Firefox 59 beta or 61 main.
 
-**IV**
+**IV.**
+
+While I wouldn't switch to the browser for this, I also make use of tab styling, and appreciate the feature.
+
+![](/assets/2019-17-11-firefox-tab-styling.png)
+
+Here, I colour tabs that haven't yet loaded in the session differently to those that have. This lets me see what I was looking at most recently by looking at the blocks of loaded against unloaded.
+
+{% highlight css %}
+.tabbrowser-tab[pending] {
+  color: red !important;
+  font-style: italic !important;
+  background-color: rgba(255, 255, 235, 0.5) !important;  
+}
+#tabbrowser-tabs ~ #alltabs-button {
+  visibility: visible !important;
+}
+{% endhighlight %}
+
+**V**
 
 I expect I'll stay on Firefox at work until Chrome implements containers and tab hiding. I've used profiles before as a container replacement, but it's less convenient to have an entirely separate window for different logons (although it's more convenient to have history and bookmarks separated as well). I like tab hiding to the extent that I stayed on the ESR version of Firefox after XUL went away, but [tab hiding was not yet added to Web Extensions](https://bugzilla.mozilla.org/show_bug.cgi?id=1384515).
