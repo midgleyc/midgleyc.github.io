@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Using Firefox at work"
-categories: firefox productivity
+tags: [firefox, productivity]
 ---
 
 **I.**

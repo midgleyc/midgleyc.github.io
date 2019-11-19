@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Learning other people's productivity tools"
-categories: productivity
+tags: [productivity]
 ---
 
 One of the most important things I learn from demos and show & tells are frequently not what the presenter meant to put across, but all the minor things that show up when they're setting up their machine, and moving around it to show what they need to. Windows has a way to disable notifications? What's that editor? Woah, how'd you format that file? Outlook has a dark mode??
