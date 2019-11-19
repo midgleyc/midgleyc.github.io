@@ -34,7 +34,7 @@ Tab Groups have been in Firefox for a while, but have a fairly small user base (
 
 **IV.**
 
-While I wouldn't switch to the browser for this, I also make use of tab styling, and appreciate the feature.
+While I wouldn't switch to the browser for this, I also make use of [tab styling](https://www.userchrome.org/what-is-userchrome-css.html), and appreciate the feature.
 
 ![](/assets/2019-17-11-firefox-tab-styling.png)
 
