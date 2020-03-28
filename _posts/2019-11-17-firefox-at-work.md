@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Using Firefox at work"
-tags: [firefox, productivity]
+tags: [philosophical, firefox, productivity]
 ---
 
 **I.**

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Web Development upskilling: Creating a minimap for an SVG"
-tags: [webdev, svg]
+tags: [technical, webdev, svg]
 ---
 
 **I.**

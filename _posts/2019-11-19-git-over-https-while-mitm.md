@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Using Git over HTTPS through an SSL briged proxy"
-tags: [git, mitm, forcepoint]
+tags: [technical, git, mitm, forcepoint]
 ---
 
 **I.**

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "On Paul Graham's Bus Ticket Theory of Genius"
-tags: [paulgraham, response]
+tags: [philosophical, paulgraham, response]
 ---
 
 **I.**

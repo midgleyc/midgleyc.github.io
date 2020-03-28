@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "A Use-Case for Monkeypatching Python's stdlib"
-tags: [python, monkeypatch]
+tags: [technical, python, monkeypatch]
 ---
 
 **I.**

@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "I lost a day to relative URLs"
-tags: [debugging, work]
+tags: [technical, debugging, work]
 ---
 
 We'd been having problems with this feature branch already. It was supposed to change the behaviour on logging in to redirect you to where you'd been just before. It worked fine locally, but failed on the build server.

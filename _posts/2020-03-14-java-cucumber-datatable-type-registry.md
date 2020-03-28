@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Getting DataTables to map to classes in Cucumber version 4 and above"
-tags: [java, cucumber]
+tags: [technical, java, cucumber]
 ---
 
 In Cucumber 2 and below, you could reference classes containing primitive elements in step definitions, and data tables would be mapped automatically.

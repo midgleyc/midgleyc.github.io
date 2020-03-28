@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Testing an Angular AsyncValidatorFn using Jasmine"
-tags: [javascript, angular, jasmine, webdev]
+tags: [technical, javascript, angular, jasmine, webdev]
 ---
 
 The [Angular documentation on validation](https://angular.io/guide/form-validation#async-validation) mentions that there exists an AsyncValidatorFn counterpart to ValidatorFn, but doesn't give any details in implementing it other than the function prototype. You can guess that it's similar to ValidatorFn in the same way that AsyncValidator is similar to Validator, and this turns out to be correct as far as I can see.

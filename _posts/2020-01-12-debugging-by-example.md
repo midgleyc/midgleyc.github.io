@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Debugging by example: Build log liquibase error"
-tags: [debugging, work]
+tags: [technical, debugging, work]
 ---
 
 At work on Thursday, we encountered a particularly thorny issue. I think it would be beneficial to write up a log of how I attempted to solve the problem, what went right, what went wrong, and what I could have done better.

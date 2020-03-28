@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Basic CSS: Opacity on overlapping components"
-tags: [webdev, css]
+tags: [technical, webdev, css]
 ---
 
 Last week, I designed an icon using two separate overlapping SVG icons (a flask with a line through it). This was to represent whether to show or hide assays (on a graph of assays and key event relations), and I wanted to fade out the icon if assays were hidden. I tried this using [`color: rgba(255, 255, 255, 0.5)`](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value#rgba()) for both icons. This didn't work:
