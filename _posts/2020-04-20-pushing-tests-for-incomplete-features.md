@@ -4,6 +4,12 @@ title:  "Using JUnit5 Extensions to allow pushing tests for code not yet impleme
 tags: [technical, java, junit]
 ---
 
+**Edit 18th May 2020**:
+
+I'd now recommend just using `@Disabled("Ticket XX-111")` instead of having an entirely separate annotation with different behaviour. This means that you can search your codebase for the presence of disabled tags with closed tickets, and I think the tradeoff of this not being automated is worth the gain of not having another annotation and not running tests every build that aren't expected to pass. You could automate this with a nightly job, for example: run through, find all references to tickets, look on JIRA to see if they're closed, maybe make some metrics as to how long tests stay in this state.
+
+---
+
 It's helpful to have acceptance tests that you can run to confirm a feature is complete. It's also helpful to have another person write these, so you reduce the chance that an ambiguous acceptance criteria is interpreted one way or the other without considering the opposite, to increase the chance that you're delivering the version of the feature the stakeholder wants.
 
 If the person writing the tests finishes first, the CI build will break if the changes are pushed (as the tests check functionality which is not yet implemented). It's good to get the changes in, as otherwise refactors to the test framework could wind up breaking these tests, and the person writing them will have to correct them. Also, it's nice for the person writing the functionality to have some tests available.
