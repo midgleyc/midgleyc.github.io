@@ -4,9 +4,7 @@ title:  "Using JUnit5 Extensions to allow pushing tests for code not yet impleme
 tags: [technical, java, junit]
 ---
 
-**Edit 18th May 2020**:
-
-I'd now recommend just using `@Disabled("Ticket XX-111")` instead of having an entirely separate annotation with different behaviour. This means that you can search your codebase for the presence of disabled tags with closed tickets, and I think the tradeoff of this not being automated is worth the gain of not having another annotation and not running tests every build that aren't expected to pass. You could automate this with a nightly job, for example: run through, find all references to tickets, look on JIRA to see if they're closed, maybe make some metrics as to how long tests stay in this state.
+**Edit 18th May 2020**: I'd now recommend just using `@Disabled("Ticket XX-111")` instead of having an entirely separate annotation with different behaviour. This means that you can search your codebase for the presence of disabled tags with closed tickets, and I think the tradeoff of this not being automated is worth the gain of not having another annotation and not running tests every build that aren't expected to pass. You could automate this with a nightly job, for example: run through, find all references to tickets, look on JIRA to see if they're closed, maybe make some metrics as to how long tests stay in this state.
 
 ---
 

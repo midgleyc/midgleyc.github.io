@@ -4,13 +4,11 @@ title:  "On Paul Graham's Bus Ticket Theory of Genius"
 tags: [philosophical, paulgraham, response]
 ---
 
-**I.**
-
 I read Paul Graham's essays when they get linked on the other blogs I read, which is semi-regularly. [The Bus Ticket Theory of Genius](http://paulgraham.com/genius.html) has just showed up on Hacker News, wherein Graham argues that to do great work requires natural ability, determination, and an obssessive interest in a particular topic, with the last one serving as a good proxy for either of the first two.
 
 I often agree with what he writes in an overall sense, but I can't say that this chimes with my experience or knowledge. While those successful tend to have a deep interest in some area they work on, I feel this is more acquired just by working in that area over many years. Hobbies can pay dividends -- or they can just be side streets. In Graham's often-referred to area of startups, I'm reminded of Stewart Butterfield, who founded Flickr after he really wanted to make a game, then tried to make a game again, founding Slack after it didn't hit off. In the context of the essay, you could call this an obsessive interest in something -- it's just not an obsessive interest in the thing that wound up making him successful!
 
-**II.**
+**I.**
 
 On Newton's interest in physics, alchemy, and the occult, I am reminded of Scott Alexander's [parable of lightning](https://slatestarcodex.com/2017/10/23/kolmogorov-complicity-and-the-parable-of-lightning/), which states that those interested in finding the truth of things will find them equally in nature as in political or religious writings (and that those more sensible won't comment on the latter). I don't think there was a particular reason for Newton to believe that his work on physics would be more valuable than his work on the occult. Additionally, it seems possible that his work on the occult was part of the driving force towards his work on physics: the hope that the movement of celestial bodies was driven by occult forces acting at a distance, instead of physical fluid vortices filling interplanetary space, as advanced by Descartes' theory of Vortices.
 
@@ -24,7 +22,7 @@ Newton's Principia provided a principle from which Kepler's laws could be deduce
 
 With many scientists (and internet commentators) now less religious the theological contributions seem lesser (and were, at least, less likely to be published during Newton's lifetime). But Newton "stood on the shoulders of giants" in both the natural and spiritual worlds. At the time, there was no indication that the orthodoxy of the church would lose power, or that the Bible (and associated texts) did not strictly hold the secrets of the world.
 
-**III.**
+**II.**
 
 Finally, a comment on one of the footnotes:
 

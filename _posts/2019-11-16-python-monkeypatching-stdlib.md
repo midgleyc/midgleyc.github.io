@@ -4,17 +4,15 @@ title:  "A Use-Case for Monkeypatching Python's stdlib"
 tags: [technical, python, monkeypatch]
 ---
 
-**I.**
-
 Some languages, such as C# and Kotlin, allow the declaration of extension methods -- new methods callable on existing classes, without needing access to the original source code. Some languages, such as Python, go further and allow you to modify the behaviour of existing function calls (known as "monkeypatching").
 
-**II.**
+**I.**
 
 At Swivel Secure, I was working in Python 3.3, and I wanted a version of copytree (copy a directory and all interior files and folders) that copied ownership and allowed the target folder (and files) to already exist. I can't remember exactly what this was for, but I think it was for backup purposes, and I eventually replaced it with [`tarfile`](https://docs.python.org/3.3/library/tarfile.html), which does exactly what I wanted.
 
 You can handle copying ownership by providing a custom `copy_function`, and in Python 3.8, you can almost do this with the `dirs_exist_ok` parameter -- the only difficulty being that attempts to overwrite existing symlinks will fail.
 
-**III.**
+**II.**
 
 The code for `copytree` in Python 3.3 can be found [on GitHub](https://github.com/python/cpython/blob/3.3/Lib/shutil.py). Neither the [option for making a directory](https://github.com/python/cpython/blob/3.3/Lib/shutil.py#L301) nor for [creating symlinks](https://github.com/python/cpython/blob/3.3/Lib/shutil.py#L311) are exposed as arguments to the function:
 
@@ -33,7 +31,7 @@ if symlinks:
 
 `os.makedirs` will fail if the directory exists, and `os.symlink` will fail if the symlink it tries to create exists. We could copy the entire function and change the relevant parts, but that introduces a lot of extra code into our project, and we won't get bugfixes that happen down the line. You could argue that this way you have some code that definitely won't change and passes all your tests (i.e. does what you want), so it would be a benefit, but tying yourself to an older verson's code like this could lead to a less understandable project compared with using the library source.
 
-**IV.**
+**III.**
 
 I chose to monkeypatch the standard library around "copytree" calls. The relevant code section of the project is:
 
@@ -81,7 +79,7 @@ I store the original behaviours, call `copytree` (and `copy_ownership` for the s
 
 `makedirs` is replaced by a function that calls the original only if the directory doesn't exist. For `symlink`, as the symlink target may be pointing somewhere else, I remove the original symlink if it is present.
 
-**V.**
+**IV.**
 
 Monkeypatching is normally not recommended -- it leads to code that is less readable and more fragile than other strategies. I believe in this case it was a good choice -- the other option I considered (copying code from the standard library and modifying it) would have lead to even less readable code, as it would have been less clear why the code was copied and modified instead of just using the existing library code.
 

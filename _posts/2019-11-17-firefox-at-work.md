@@ -4,11 +4,9 @@ title:  "Using Firefox at work"
 tags: [philosophical, firefox, productivity]
 ---
 
-**I.**
-
 I use Firefox at work. Unlike the prime focus of their advertising campaigns, I'm not interested in the privacy protections. I use it primarily for two features that haven't yet made it to Chrome -- containers (cookie isolation) and tab hiding.
 
-**II.**
+**I.**
 
 Firefox containers provide website storage isolation, and were designed for privacy purposes -- for example, for folk who didn't want Facebook or Google to be able to track them on every site, but only on the sites those companies provide. As a side effect, providing cookie isolation allows you to log on to a site multiple times, once per container.
 
@@ -22,7 +20,7 @@ One other use of containers is when manually testing multiple logins to sites lo
 
 Containers aren't enabled by default, and require an extension that uses them to be enabled. I use [Firefox Multi-Account Containers](https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers/) for simplicity -- it offers containers and the ability to lock a site to a container. [Containerise](https://addons.mozilla.org/en-US/firefox/addon/containerise/) offers more powerful regex locking if this is required. Containers [require that you have Firefox set to remember history](https://support.mozilla.org/en-US/kb/containers), apparently due to [possible user confusion](https://bugzilla.mozilla.org/show_bug.cgi?id=1320757).
 
-**III.**
+**II.**
 
 Tab hiding is the ability to hide tabs you're not interested in seeing at the moment. Primarily, this is implemented using groups of tabs, of which you see one group at a time. For example, I might have a "CSS" group and a "Java" group, and if somebody calls me onto another ticket or I have to give a presentation I might create another group for that. When I change groups, all the tabs that are currently visible will be hidden, and only the tabs in the group will be shown.
 
@@ -32,7 +30,7 @@ Tab hiding requires an extension with the "hide and show browser tabs" permissio
 
 Tab Groups have been in Firefox for a while, but have a fairly small user base ([0.01% of users in Firefox 45](https://bugzilla.mozilla.org/show_bug.cgi?id=1221050)). They were first introduced in Firefox 4 Beta as [Tab Candy](https://www.geek.com/news/mozilla-shows-off-firefox-tab-candy-1272614/), then in Firefox 4 proper as Panorama. This was then [removed from Firefox 45](https://www.ghacks.net/2015/11/08/mozilla-to-remove-tab-groups-panorama-in-firefox-45/), but Quicksaver [produced an addon](http://web.archive.org/web/20170930123202/https://addons.mozilla.org/en-US/firefox/addon/tab-groups-panorama/), based off the same codebase, with the same features. This addon [stopped working](http://web.archive.org/web/20171017070348/http://fasezero.com/lastnotice.html) when Firefox 57 removed support for XUL-style extensions. The ability was [added back](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API/tabs/hide) in Firefox 59 beta or 61 main.
 
-**IV.**
+**III.**
 
 While I wouldn't switch to the browser for this, I also make use of [tab styling](https://www.userchrome.org/what-is-userchrome-css.html), and appreciate the feature.
 
@@ -51,6 +49,6 @@ Here, I colour tabs that haven't yet loaded in the session differently to those 
 }
 {% endhighlight %}
 
-**V**
+**IV**
 
 I expect I'll stay on Firefox at work until Chrome implements containers and tab hiding. I've used profiles before as a container replacement, but it's less convenient to have an entirely separate window for different logons (although it's more convenient to have history and bookmarks separated as well). I like tab hiding to the extent that I stayed on the ESR version of Firefox after XUL went away, but [tab hiding was not yet added to Web Extensions](https://bugzilla.mozilla.org/show_bug.cgi?id=1384515).
