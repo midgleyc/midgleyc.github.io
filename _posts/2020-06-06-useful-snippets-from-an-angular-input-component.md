@@ -66,7 +66,7 @@ Derive whether the field is required
 
 We add a red * to fields that are required, so the component needs to know whether a field is required so it can attach the appropriate class.
 
-<object type="text/html" data="{{site.url}}/assets/2020-06-input-component/required.html" width="150px" height="40px"></object>
+<object type="text/html" data="/assets/2020-06-input-component/required.html" width="150px" height="40px"></object>
 
 The form control doesn't store any information in itself we could use to check whether a "required" validator is applied, and the `.validator` property gives a conglomeration of all validators applied. We can, however, check whether a validator is applied by seeing if we get an error when we pass in a control that fails validation.
 

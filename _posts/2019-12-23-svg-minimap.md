@@ -9,7 +9,7 @@ tags: [technical, webdev, svg]
 I find it easier to learn new skills if I have a project to work on. I knew that for my current project, I want to learn more CSS, vanilla JavaScript and SVG. I thought a project that could involve all three was creating a minimap: take a large SVG image, duplicate it in miniature, and allow the user to drag a square around the miniature replica to move the view around the larger one. Somewhat like the minimap in an RTS like Age of Empires (although that involves a simplification in the smaller map I don't think I'd go for).
 
 <figure>
-  <a title="Lancer-X/ASCEAI [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Meritous-automap.png"><img alt="An example of a minimap: A large map in the game Meritous, and two smaller maps. Each smaller map has a highlighted section representing where the larger map occurs in it." src="{{site.url}}/assets/2019-12-meritous.png"></a>
+  <a title="Lancer-X/ASCEAI [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Meritous-automap.png"><img alt="An example of a minimap: A large map in the game Meritous, and two smaller maps. Each smaller map has a highlighted section representing where the larger map occurs in it." src="/assets/2019-12-meritous.png"></a>
   <figcaption>An example of a <a href="https://en.wikipedia.org/wiki/Mini-map">Mini-map</a>, from the game Meritous</figcaption>
 </figure>
 
@@ -17,7 +17,7 @@ I find it easier to learn new skills if I have a project to work on. I knew that
 
 While researching how to start, I was lucky enough to find a [page on scaling SVGs](https://css-tricks.com/scale-svg/) which gave me everything I needed: how to reference already-existing elements without duplicating the code, and what `viewBox` was.
 
-<object type="text/html" data="{{site.url}}/assets/2019-12-minimap/minimap.html" width="700px" height="450px"></object>
+<object type="text/html" data="/assets/2019-12-minimap/minimap.html" width="700px" height="450px"></object>
 
 You can view the frame source to see all the code in detail, and I'll highlight the important parts below.
 
