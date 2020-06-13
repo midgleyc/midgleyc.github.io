@@ -49,7 +49,7 @@ The [documentation around endpoints and accepted input data formats](https://doc
 * a collection assocation resource is at `/humans/1/children`
 * a non-collection assocation resource is at `/humans/1/father`
 
-You can pass in URIs to represent elements instead of passing in a complete JSON object. For example, if `Human` has a field `Human father;`, you can pass in `{"father": "humans/16"}` to the item resource endpoint.
+You can pass in URIs to represent elements instead of passing in a complete JSON object. For example, if `Human` has a field `Human father;`, you can pass in `{"father": "/16"}` to the item resource endpoint.
 
 The endpoints accepting `text/uri-list` accept a single number -- the id for the resource you're trying to add / update.
 
