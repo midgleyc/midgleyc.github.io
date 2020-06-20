@@ -58,4 +58,40 @@ HTTP endpoint general comments
 
 Setting `RepositoryRestConfiguration.returnBodyOnUpdate` can be very useful for tests that try to roll back the changes made, and avoid additional GETs you may be making.
 
-Use `@ControllerAdvice` to convert error messages to consistent status codes. We had issues with 403s and 404s being used inconsistently: always converting to 404 is likely best for obscuring which entities exist.
+Use `@ControllerAdvice` to convert error messages to consistent status codes. We had issues with 403s and 404s being used inconsistently: always converting to 404 is likely best for obscuring which entities exist. Spring Security throws an AccessDenied exception no matter what goes wrong: catch it closer to the call and convert it to the exception you want.
+
+Sending JSON to an endpoint calls the `setX` method for `X` in the JSON (and similarly, receiving JSON converts `getX` to properties). Using this, you can add "flat" properties that expand to child elements -- for example a `mothersMaidenName` property could correspond to a `setMothersMaidenName` method that calls `getOrCreateMother().setBirthSurname(name)`.
+
+Using different IDs in the URL
+------------------------------
+
+By default, the ID exposed in the URL is the `@Id` of the object -- which tends to be simply a number or a string. You may want to modify it -- for example, if you're using an embedded ID, it will use the string representation of the embedded ID when showing the URL in `links`, and simply refuse to parse it when input.
+
+You can do this by creating a class annotated with `@Component` that implements [`BackendIdConverter`](https://docs.spring.io/spring-data/rest/docs/current/api/org/springframework/data/rest/webmvc/spi/BackendIdConverter.html), and having the `supports` method return true for the model object whose URLs you want to affect. Generally, though, it's nicer to have a number for a primary key -- enough things become harder using embedded IDs with HATEOAS that I'd prefer to avoid them in general. [This stackoverflow question](https://stackoverflow.com/q/23801575/2591803) has more information.
+
+Modifying the Repository Config
+-------------------------------
+
+You can modify the configuration by having a `@Component` implement the `RepositoryRestConfigurer` interface and overriding the `configureRepositoryRestConfiguration` method. (In versions before 3.1, extend `RepositoryRestConfigurerAdapter`; in versions before 2.4 have your application extend `RepositoryRestMvcConfiguration`.)
+
+If you want the entity Ids to be exposed more accessibly, you can call `exposeIdsFor`, which takes a varargs of classes for which to expose ids. You can do this manually (pro: explicit, fast) or automatically (e.g., [using the EntityManager](https://stackoverflow.com/a/47765828/2591803)) which does it for all managed entities without having to maintain the code. This is mostly useful for tests in my experience, but it does make it a lot more convenient to be able to get the id as `$.id` instead of `$.links.self.href` followed by string manipulation (characters after the last '/').
+
+After 3.1, you can disable specific HTTP methods using the `getExposureConfiguration` method followed by `forDomainType(Class<?> type)` (and, e.g. `withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE))`). You can also set a Repository method to `@RestResource(exported = false)`, but this may disable multiple HTTP methods (for example, disabling `save` will stop both PUT and DELETE).
+
+An Annoying Bug (a workaround for a StackOverflow exception)
+------------------------------------------------------------
+
+This is an extremely specific note in case I run into this problem again. We have:
+
+* A `@MappedSuperclass` `MySuperClass`
+* A class `MyClass` extending `MySuperClass`
+* Another class `MyForeignClass` extending `MySuperClass`
+ * Both classes have an ID field with `GenerationType.IDENTITY`
+* A `@OneToOne(cascade = CascadeType.ALL) private MyForeignClass f = new MyForeignClass()` field on `MyClass` (with getters and setters)
+* A `MySuperClassEntityListener` (mapped with `@EntityListeners` on MySuperClass)
+ * The EntityListener has a `@PrePersist` method
+  * The method calls an injected `JpaRepository` that exists only as an interface (in order to inject Spring beans into entity listeners, we use an `@Autowired` `init` method, because constructors didn't work)
+
+Saving `MyClass` (e.g., a POST to a REST endpoint) leads to a StackOverflowException.
+
+To work around this, send an `id` with the POST call (e.g. '{"id": 0, [...]}'). The ID is ignored, and both objects are written to the database.
