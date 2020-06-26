@@ -78,6 +78,53 @@ If you want the entity Ids to be exposed more accessibly, you can call `exposeId
 
 After 3.1, you can disable specific HTTP methods using the `getExposureConfiguration` method followed by `forDomainType(Class<?> type)` (and, e.g. `withItemExposure((metadata, httpMethods) -> httpMethods.disable(HttpMethod.POST, HttpMethod.PUT, HttpMethod.DELETE))`). You can also set a Repository method to `@RestResource(exported = false)`, but this may disable multiple HTTP methods (for example, disabling `save` will stop both PUT and DELETE).
 
+Sorting a filtered Many-to-Many relationship
+--------------------------------------------
+
+You can't use `List` on a filtered Many-to-Many relationship, or adding will fail with "[cannot recreate collection while filter is enabled](https://github.com/hibernate/hibernate-orm/blob/5.4/hibernate-core/src/main/java/org/hibernate/action/internal/CollectionUpdateAction.java#L74-L80)". A List uses the [`PersistentBag`](https://github.com/hibernate/hibernate-orm/blob/5.4/hibernate-core/src/main/java/org/hibernate/collection/internal/PersistentBag.java) collection, which tries `needsRecreate` for collections that aren't one-to-many (all my affected `@OneToMany` collections were interpreted as actually being many-to-one; I'm not sure why).
+
+Using a `Set` instead of a list fixes the recreation problem, but returns the resulting elements in a pseudorandom order, instead of by Id.
+
+You can use `SortedSet` instead of `Set` to have a sorted return using a comparator you specify. After a long time fighting with the annotations, I think the easiest thing to do is to implement `Comparable` and use the `@OrderBy` annotation (using a custom comparator fails with subclasses of a `@Inheritance(strategy=InheritanceType.JOINED)`, for example, as it thinks the child classes aren't comparable instead of using the comparator you've specified).
+
+Using interface defaults, you can create a shared comparator you can use across domain classes (like a trait).
+
+```java
+import javax.validation.constraints.NotNull;
+
+public interface IdComparable<T extends Comparable<T>> extends Comparable<IdComparable<T>> {
+    T getId();
+
+    default int compareTo(@NotNull IdComparable<T> other) {
+        return getId().compareTo(other.getId());
+    }
+}
+```
+
+Example usage:
+```java
+@Entity
+@Table(name="MYCLASS")
+public class MyClass implements IdComparable<Integer> {
+    @Id
+    @Column(name="ID")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+
+    Integer getId() { return id; }
+}
+
+@Entity
+@Table(name="MYPARENTCLASS")
+public class MyParentClass {
+    @ManyToMany()
+    @JoinTable(name="PARENT_CHILD")
+    @OrderBy
+    @Filter(name="countryFilter")
+    public SortedSet<MyClass> myClasses = new TreeSet<>();
+}
+```
+
 An Annoying Bug (a workaround for a StackOverflow exception)
 ------------------------------------------------------------
 
