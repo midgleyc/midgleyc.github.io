@@ -8,7 +8,7 @@ Angular allows creation of reusable components to simplify development. I create
 
 Initially, I asked the user to provide many pieces of information: id, name, required, max length, and so on that I was later able to derive from the formControlElement and other pieces. This post is to note the techniques I used.
 
-Minimally, I ask that the user provide a FormControlElement (to be updated with the input text) and a label (to display next to the input). It would be nice to have something like `nameof` (as in C#), as the label is often the titlecased property name, but no such luck.
+Minimally, I ask that the user provide a FormControlElement (to be updated with the input text) and a label (to display next to the input). It would be nice to have something like `nameof` (as in C#), as the label is often the titlecased property name, but no such luck (although note that you can [write your own `nameof` for type safety](https://schneidenbach.gitbooks.io/typescript-cookbook/nameof-operator.html)).
 
 {% highlight typescript %}
 @Input()
