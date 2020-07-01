@@ -1,0 +1,29 @@
+--
+
+https://docs.microsoft.com/en-us/visualstudio/test/live-unit-testing?view=vs-2019
+--
+
+Some tests aren't worth writing. For example, suppose that you've created a field, and had your IDE generate a getter and a setter for it. Testing that the getter and setter work isn't going to be worth the time: this is just testing that your IDE works -- you'd notice if it didn't, and you can also spot-check these single line methods to see whether they're correct.
+
+To extend from this, I'd make a stronger claim: tests that don't find any bugs weren't worth writing, provided you were confident that was going to be the case before you started. This is likely to include single-line methods or methods with simple logic. One caveat is boundary conditions, but this is something of a catch-22: if you thought to write the test for the boundary condition, you would think of the boundary condition while writing the code. If, however, you didn't think of testing for the boundary condition, you wouldn't have thought of it while writing the code! You can increase your chances of remembering this by experience, or by methods such as insisting that a different person write the tests to the one writing the code (to double your chances), but this trades off speed by increasing overhead.
+
+Similarly, I'd say that if your code reviews aren't finding any improvements, you're probably doing too many. This again is a tradeoff of quality for speed: the faster you can get your code out to users, the faster you can get feedback on it. I've worked on teams where each piece of code was reviewed three times: once while pairing, once while committed to the feature branch, and once again during a pull request to the main branch. Most of these reviews didn't find anything: on the plus side you could say this served as a quality gate, but on the downside it increased overhead and decreased the number of features that could be delivered. This is only a recommendation for sufficiently mature teams -- I don't mean that not doing code reviews is preferable!
+
+--
+
+*Sometimes refactoring can make the code worse (e.g. less performant, less readable). In this case you should discard the changes, and maybe leave a comment about why you didn't add them.
+**If the change was done by a junior developer you might want to add it anyway to not discourage them. Senior devs should be able to accept code not going in if it'll make things worse, though.
+*Some unit tests aren't worth writing (e.g. getters, setters). Some code reviews aren't worth doing (this is a thing of experience, but if your code reviews aren't finding any improvements and have degenerated into rubber stamping, consider not doing them and seeing if quality is affected).
+**If you can set up your code coverage provider to work on your integration tests, much the better: you can avoid writing unit tests for the things that would break your entire application if they ever failed.
+*Integration tests that test many things are useful as a spot-check -- does the most common path still work? In general, tests that test multiple things are fine: one oft-given benefit of testing one thing per test is that you can tell exactly what failed, but you should be able to tell that anyway from the error message: yes, this means you have to write the error messages, but this probably has a lower overhead than splitting out your tests to have one assertion per test!
+*Using raw (non-DI) singletons is fine: it's hard, but a solved problem. This is something you'd only consider in a project that didn't use DI anyway. This would be a non-web-dev (can't easily add something on a per-request or per-session basis without DI) project that wasn't using any frameworks (most provide a DI option out of the box).
+*Redux is overkill for most applications. So is Kubernetes.
+**For Angular projects, I feel that event-driven architectures are superior to redux ones: keep the actions, but just add to and read from a global Subject. Storing variables in a store seems less sensible given that you can't pass the props directly to the components.
+**I really like the idea of Hashicorp Nomad, but it's definitely uncommon, and it's generally better to go for a more mainstream solution.
+
+*PHP is bad because combining HTML and logic is bad. React is good because of the same reason!
+** separation of concerns doesn't have to mean separation of languages -- but I do remember an outcry about perl / PHP after everybody decided template files were "better". Has the pendulum swung back?
+*It is bad to change your code for testing prurposes (i.e. no "addCustomTestData" methods). Changing your entire architecture so that you can use DI for testing is fine, though.
+**Alternative: protected factory methods.
+*VSCode is the new vim: extensively customizable, at least some defaults probably not what you want, massive extension system. No macro support though, which is the other thing I like about vim.
+*Redux is a re-invention of global variables. So is DI to some extent.
