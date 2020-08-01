@@ -7,7 +7,7 @@ tags: [technical, javascript, rxjs, reactive]
 The problem is to display a loading spinner while requests are in-flight. The complexity is that everything's event-driven, so the components themselves don't know when this happens. A solution to this complexity is to use [RxJs](https://rxjs.dev/guide/overview) or some other event management system.
 
 Initial requirement: display a spinner
-======================================
+--------------------------------------
 
 Our initial requirement is to display the "loading" spinner when is request is sent, and remove it when the response is received. We've abstracted this into an `Observable` we can subscribe to: it receives `true` when a request is sent and `false` when a response is received. No additional requests can be sent while the "loading" spinner is present, so this is acceptable -- if we could send multiple requests, we'd have to use a counter to store how many requests were in-flight (increment when sent, decrement when received) and also to consider what we'd do about requests that never returned. For now, this falls under YAGNI.
 
@@ -42,7 +42,7 @@ ngOnDestroy(): void {
 This simple implementation just sets a field when the events come in. It also handles clearing up the subscription when the component is destroyed.
 
 A New Requirement: the spinner shows up too much
-================================================
+------------------------------------------------
 
 User acceptance testing indicates the spinner is too flashy -- it appears on every call, even the ones that barely take any time. A call is made to wait half a second before displaying the spinner, but still to take it down after the call succeeds.
 
@@ -74,11 +74,11 @@ it('should not show spinner after hide message', fakeAsync(() => {
 
 We know that we want to delay an observation, so [delay](https://rxjs.dev/api/operators/delay) should be useful. We know that we want to cancel preceding loading calls if we know that a call succeeded, so [switchMap](https://www.learnrxjs.io/learn-rxjs/operators/transformation/switchmap) looks good.
 
-#### A Useful Visualisation: RxViz
+### A Useful Visualisation: RxViz
 
 While developing, it can be useful to use a visualisation tool such as [RxViz](https://rxviz.com) so you can see the effects of your mapping functions on a pipeline, in addition to checking whether your tests pass or not.
 
-#### The Solution
+### The Solution
 
 ```typescript
 TIME_UNTIL_SHOW = 500

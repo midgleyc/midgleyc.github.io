@@ -19,7 +19,7 @@ and had to be told to roll back the database to a previous version in case of te
 The initial aim was to remove the reliance on these refreshes, which could be done by noting which changes had been made and how they needed to be reverted. I used a JUnit 5 extension for this, and named it "Rollback".
 
 Creating a Rollback class
-=========================
+-------------------------
 
 {% highlight java %}
 public class Rollback {
@@ -116,7 +116,7 @@ rollback.addCleanupCall(() -> aopRestCaller.update(1, Map.of("name", "AOP 1")));
 ```
 
 Centralising the rollbacks
-==========================
+--------------------------
 
 I noticed after using this a short time that we could programmatically figure out what the rollbacks should be for many common calls -- a `create` call would want to be followed by a `delete`, and an `update` would want another `update` with the original fields.
 
@@ -124,7 +124,7 @@ I set about making an `AbstractRestCaller` class, that I wanted to the other mod
 
 Some of the methods following use a `restRequest` object that wraps Spring's `RestTemplate` to add headers for authorization. One nice advantage of having this shared across all test callers was that an interceptor to, for example, log all JSON requests and responses only needed to be made in one place.
 
-#### Create
+### Create
 
 ```java
     public ResponseEntity<String> create(Map<String, Object> fields) {
@@ -171,7 +171,7 @@ We considered moving the "successfully created" check outside the overridable de
 
 The JSONObject is an org.json.JSONObject. We're going to see its importance in the `update` section, where we use `JSONObject.NULL` to be able to add nulls into maps.
 
-#### Update
+### Update
 
 ```java
     public ResponseEntity<String> update(Integer id, Map<String, Object> fields) {
@@ -222,7 +222,7 @@ Again, we expect the entrypoint to be the second `update`, with the `rollback`.
 
 The aim here is to create a new JSON object that looks like the JSON passed into the PATCH request, but has the values that the previous object had. We need to add NULLs for those values not present in the initial GET request (we can't use plain `null`, because you can't add `null` to a Map). PATCHing with the entire initial object (plus NULLs where appropriate) would have been nice had it worked, but occasionally lead to errors.
 
-#### Custom endpoints
+### Custom endpoints
 
 Some endpoints had custom URLs beyond the standard CRUD -- for example, "/aops" has a "publish" option that publishes it and all child elements. For these, there were two standard options:
 
