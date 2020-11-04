@@ -37,3 +37,7 @@ For the terminal, [asciinema](https://asciinema.org/). You might then want to co
 For a simple screen recording, I like [ScreenToGif](https://www.screentogif.com/).
 
 For a screen recording that shows the keys you press, there's [keycast](https://github.com/cho45/KeyCast), but the one used on most places I see looks different so there must be more.
+
+### That Tool That Gives You a URL So You Can Expose a Server on your Local Machine
+
+It's [ngrok](https://ngrok.com/).
