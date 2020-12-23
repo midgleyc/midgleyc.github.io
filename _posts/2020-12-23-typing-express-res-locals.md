@@ -121,8 +121,14 @@ const locals = res.locals as Locals
 locals.title = 'The Title'
 ```
 
-One downside of this is that you can't forbid creative untyped assignments from `res.locals`:
+If you do this then you'll want to change your regex to forbid access to `res.locals` without a cast:
 
-```typescript
-const { title } = res.locals
+```json
+{
+  "regex": "res\\.locals(?! as Locals\b)",
+  "message": "Ensure res.locals is always case to type Locals",
+  "files": {
+    "ignore": ".*\\.js"
+  }
+}
 ```
