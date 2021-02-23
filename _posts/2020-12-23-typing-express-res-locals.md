@@ -125,7 +125,7 @@ If you do this then you'll want to change your regex to forbid access to `res.lo
 
 ```json
 {
-  "regex": "res\\.locals(?! as Locals\b)",
+  "regex": "res\\.locals(?! as Locals\\b)",
   "message": "Ensure res.locals is always case to type Locals",
   "files": {
     "ignore": ".*\\.js"
