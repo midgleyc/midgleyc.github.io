@@ -14,7 +14,7 @@ Ansible's [tips and tricks](https://docs.ansible.com/ansible/2.10/user_guide/pla
 
 Instead of
 
-```
+```yaml
 backups:
   rate: 'weekly'
   store: 's3'
@@ -22,7 +22,7 @@ backups:
 
 use
 
-```
+```yaml
 backups_rate: 'weekly'
 backups_store: 's3'
 ```
@@ -38,20 +38,20 @@ At the task level, you can use the [combine filter](https://docs.ansible.com/ans
 Instead of
 
 defaults/main.yml
-```
+```yaml
 <100 variables>
 ```
 
 use
 
 defaults/main/well-named.yml
-```
+```yaml
 <50 variables>
 ```
 
 defaults/main/different-good-name.yml
 
-```
+```yaml
 <50 variables>
 ```
 
@@ -66,7 +66,7 @@ Ordering makes it easier to note structure at a glance. This is likely rare only
 Instead of
 
 playbook.yml
-```
+```yaml
 ---
 - hosts: all
 ```
@@ -76,7 +76,7 @@ called as `ansible-playbook playbook.yml --limit <target>`
 use
 
 playbook.yml
-```
+```yaml
 ---
 - hosts: '{{ target }}'
 ```
@@ -94,7 +94,7 @@ Running on both Windows and Linux is uncommon, but possible. Frequently, you'll 
 Example:
 
 tasks/main.yml
-```
+```yaml
 - name: Start deployment
   debug:
     msg: "##teamcity[blockOpened name='service-config'] description='Deployment Start'"
@@ -118,7 +118,7 @@ tasks/main.yml
 ```
 
 tasks/windows-install.yml
-```
+```yaml
 - name: Call other role
   include_role:
     name: deploy-other-thing
@@ -133,7 +133,7 @@ tasks/windows-install.yml
 ```
 
 tasks/linux-install.yml
-```
+```yaml
 - name: Call other role
   include_role:
     name: deploy-other-thing
@@ -148,7 +148,7 @@ tasks/linux-install.yml
 ```
 
 tasks/common.yml
-```
+```yaml
 - name: Post a helpful message
   debug:
     msg: "Going good!"
