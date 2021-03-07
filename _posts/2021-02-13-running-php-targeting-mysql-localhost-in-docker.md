@@ -12,7 +12,7 @@ An alternative is to use `socat` to redirect attempted socket connections to a d
 
 First, in `php.ini`, configure the `default_socket`. Certain compilation options in PHP hardcode the socket at compile time: in that case attempt to find which filepath is being used and reference that in the `socat` configuration.
 
-```
+```ini
 mysql.default_socket = /var/run/mysqld/mysqld.sock
 mysqli.default_socket = /var/run/mysqld/mysqld.sock
 pdo_mysql.default_socket = /var/run/mysqld/mysqld.sock

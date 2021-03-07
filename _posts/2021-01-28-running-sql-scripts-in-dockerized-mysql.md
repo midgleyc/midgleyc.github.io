@@ -6,13 +6,13 @@ tags: [technical, docker, mysql]
 
 You can redirect a SQL script through a mysql client by running:
 
-```
+```bash
 mysql -uroot -prootpass -D mydatabase < /my/file/location.sql
 ```
 
 Suppose you're running MySQL or MariaDB in a container (e.g. `mariadb:5.5` or `mysql:8`). You can do the same thing:
 
-```
+```bash
 docker exec -i <container id> mysql -uroot -prootpass -D mydatabase < /my/file/location.sql
 ```
 

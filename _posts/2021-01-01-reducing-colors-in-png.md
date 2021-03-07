@@ -10,19 +10,19 @@ I used ImageMagick for this because I'm not well aware of graphical tools.
 
 First I converted the saved JPG to a PNG.
 
-```
+```bash
 convert server-icon-13.jpg server.png
 ```
 
 Second I created a swatch with the colors I wanted: dark gray and transparent.
 
-```
+```bash
 convert xc:"rgb(51, 62, 73)" xc:"rgba(255, 255, 255, 0)" +append swatch.png
 ```
 
 Finally I recolored the server to have the colormap of the swatch.
 
-```
+```bash
 convert server.png +dither -remap swatch.png server-less.png
 ```
 

@@ -44,27 +44,27 @@ First, create an `mms.cfg` file in the correct place according to your OS and br
 | Linux | /etc/adobe/mms.cfg |
 
 In the file, add the following lines:
-```
+```conf
 EOLUninstallDisable=1
 ```
 This will prevent the uninstall prompt from appearing, but won't prevent your users from uninstalling Flash. If you've set `AutoUpdateDisable=1` already (to disable all updates), this is not required.
 
-```
+```conf
 EnableAllowList=1
 ```
 This requires you to set `AllowListUrlPattern=<something>` in order to use Flash on given domains. After Flash EOL, it will be assumed to be true. Before the end of the year, you can test it using `AllowListPreview=1` and `TraceOutputEcho=1` to see, in the web console, whether a given SWF or Flash resource is allowed. After Flash EOL, you'll have to [configure](https://helpx.adobe.com/flash-player/kb/configure-debugger-version-flash-player.html) and use the [debug version](https://www.adobe.com/support/flashplayer/debug_downloads.html) of Flash Player.
 
-```
+```conf
 AllowListRootMovieOnly=1
 ```
 This only applies restrictions to the parent SWF loaded on a given page. That SWF can then load XML files or other SWFs (or anything else) from any location. This is less secure, but much easier to configure.
 
-```
+```conf
 EnableInsecureAllowListLocalPathMatching=1
 ```
 If you're using a local desktop application that uses non-conformant `file:` and `blob:` URIs, this option enables more permissive matching that may allow an application like this to work.
 
-```
+```conf
 AllowListUrlPattern=*://my-intranet/my-admin-panel
 AllowListUrlPattern=https://secure-site/some-other-utility
 ```

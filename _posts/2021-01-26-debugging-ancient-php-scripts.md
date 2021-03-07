@@ -21,7 +21,7 @@ This is classic "throw things at a wall to see what sticks" code. However, even 
 
 Eventually I get something like:
 
-```
+```html
 0<br />
 <b>Fatal error</b>:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 32 bytes) in <b>/var/www/html/update_database.php</b> on line <b>94</b><br />
 ```
