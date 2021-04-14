@@ -8,7 +8,7 @@ Cucumber [allows you to rerun failed tests](https://stackoverflow.com/a/38709873
 
 The rerun text file looks something like this:
 
-```
+```conf
 file:src/test/resources/features/Login.feature:59
 file:src/test/resources/features/CreateUser.feature:7:63
 ```
