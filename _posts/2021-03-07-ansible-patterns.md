@@ -76,10 +76,12 @@ called as `ansible-playbook playbook.yml --limit <target>`
 use
 
 playbook.yml
+{% raw %}
 ```yaml
 ---
 - hosts: '{{ target }}'
 ```
+{% endraw %}
 
 called as `ansible-playbook playbook.yml --extra-vars target=<target>`
 
