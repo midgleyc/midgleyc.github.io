@@ -8,7 +8,7 @@ I find it easier to learn new skills if I have a project to work on. I knew that
 
 <figure>
   <a title="Lancer-X/ASCEAI [CC BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0)], via Wikimedia Commons" href="https://commons.wikimedia.org/wiki/File:Meritous-automap.png"><img alt="An example of a minimap: A large map in the game Meritous, and two smaller maps. Each smaller map has a highlighted section representing where the larger map occurs in it." src="/assets/2019-12-meritous.png"></a>
-  <figcaption>An example of a <a href="https://en.wikipedia.org/wiki/Mini-map">Mini-map</a>, from the game Meritous</figcaption>
+  <figcaption>An example of a <a href="https://en.wikipedia.org/wiki/Mini-map">Mini-map</a>, from the game Meritous. Image: <a href="https://commons.wikimedia.org/wiki/File:Meritous-automap.png">Meritous-automap.png</a> by <a href="https://commons.wikimedia.org/wiki/Special:Contributions/RJaguar3">Lancer-X/ASCEAI</a>, available under a <a href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">Creative Commons Attribution-Share Alike 3.0 Unported license</a></figcaption>
 </figure>
 
 **I.**
