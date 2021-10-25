@@ -67,3 +67,9 @@ We use AWS' Simple Email Service to send emails from our services. We attached a
 ## Making new deployments
 
 If the files change, you can run `kubectl apply -f FOLDERNAME` to reapply all configuration files in that folder. If the files don't change but the docker images do, you can run `kubectl rollout restart deployment/whatever` to redeploy only that `ReplicaSet` or `kubectl rollout restart deployment` to restart everything (if necessary), assuming you have `imagePullPolicy: Always`.
+
+## Interacting with the containers
+
+You can use `kubectl port-forward service/myservice LOCAL_PORT:REMOTE_PORT` to access the service as though it were running on your local machine.
+
+You can use `kubectl exec -it POD_NAME -- /bin/bash` to get a shell on the container, or variants to run specific commands.
