@@ -40,6 +40,23 @@ eksctl create cluster -n example -r eu-west-1 --nodegroup-name example-nodegroup
 
 After half an hour, it was up! The first time I messed up the command and left the cluster in a state where I couldn't create any nodegroups: I just deleted the whole thing and started again, and it worked the second time.
 
+If you're using persistent EBS volumes, note that they are restricted to a particular availability zone after creation, and you should similarly restrict your nodegroup (or cluster) to a single availability zone (using `--zones` or `--node-zones`). If you only found out about this after creating your nodegroup, you'll need to recreate it. Creating new nodegroups and deleting the old ones can be a convenient way to upgrade them, too.
+
+It can be more convenient to create your cluster using a configuration file. You can use it in many commands of the form `eksctl create X --config-file YOUR_FILE`, which is useful if you want to delete and recreate nodegroups, or use similar commands across test and production clusters.
+```yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: my-cluster
+  region: eu-west-1
+  version: "1.21"
+
+managedNodeGroups:
+- name: my-cluster-ng
+  availabilityZones: ["eu-west-1a"]
+  desiredCapacity: 1
+```
+
 Next, the cluster creator should follow [the instructions on AWS for adding other users](https://aws.amazon.com/premiumsupport/knowledge-center/eks-api-server-unauthorized-error/). Run
 
 ```bash
@@ -64,6 +81,40 @@ Those users can then create their `kubeconfig` using `aws eks update-kubeconfig 
 
 We use AWS' Simple Email Service to send emails from our services. We attached a policy to the `eksctl`-created nodegroup service account with the `SendEmail` permissions, as mentioned in the error message we got when trying to send an email without this.
 
+You can also use [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/). Create a policy with the required permissions (here called SESSendEmail), and add to the eksctl YAML:
+
+```yaml
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+iam:
+  withOIDC: true
+  serviceAccounts:
+  - metadata:
+      name: email-sender
+    attachPolicyARNs:
+    - "arn:aws:iam::XXXXXXXXXXXX:policy/SESSendEmail"
+```
+
+Next, run [the commands `eksctl` requires](https://eksctl.io/usage/iamserviceaccounts/#usage-with-config-files):
+
+```bash
+eksctl utils associate-iam-oidc-provider --config-file=FILE
+eksctl create iamserviceaccount --config-file=FILE
+```
+
+Finally, update your deployment to use the given service account:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+spec:
+  template:
+     spec:
+       serviceAccountName: email-sender
+```
+
+and on a re-apply the service account should show as mounted in the pod's `describe`, and the environment variables `AWS_ROLE_ARN` and `AWS_WEB_IDENTITY_TOKEN_FILE` should be present. You may have to install additional software before your program can use these variables: we had to install the [`AWSSDK.SecurityToken`](https://www.nuget.org/packages/AWSSDK.SecurityToken/) NuGet package.
+
 ## Making new deployments
 
 If the files change, you can run `kubectl apply -f FOLDERNAME` to reapply all configuration files in that folder. If the files don't change but the docker images do, you can run `kubectl rollout restart deployment/whatever` to redeploy only that `ReplicaSet` or `kubectl rollout restart deployment` to restart everything (if necessary), assuming you have `imagePullPolicy: Always`.
@@ -73,3 +124,5 @@ If the files change, you can run `kubectl apply -f FOLDERNAME` to reapply all co
 You can use `kubectl port-forward service/myservice LOCAL_PORT:REMOTE_PORT` to access the service as though it were running on your local machine.
 
 You can use `kubectl exec -it POD_NAME -- /bin/bash` to get a shell on the container, or variants to run specific commands.
+
+You can use `kubectl logs service/myservice` to view the `docker logs` of containers inside a service.
