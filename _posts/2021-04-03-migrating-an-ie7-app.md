@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Migrating an IE7 App"
-tags: [technical, ansible]
+tags: [technical, web]
 ---
 
 I recently had the experience of updating a web app designed for <abbr title="Internet Explorer 7">IE7</abbr> to additionally work in modern browsers (users use predominantly Internet Explorer or Edge). Here I note some changes I needed to make -- I couldn't find any solid documentation on differences in old versions of IE, and much was trial and error.
