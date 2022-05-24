@@ -35,6 +35,7 @@ RUN --mount=type=cache,target=/root/.npm --mount=type=ssh,id=default npm ci
 
 For CI, you can add a "deploy key" -- a key that provides read-only access to the repository. Add it to [Settings -> Security -> Deploy keys](https://github.com/Organisation/my-shared-library/settings/keys) and set it up in the CI tool. For GitHub Actions, I used [`shimataro/ssh-key-action`](https://github.com/shimataro/ssh-key-action):
 
+{% raw %}
 ```yml
 - name: Install SSH key
   uses: shimataro/ssh-key-action@v2.3.1
@@ -43,3 +44,4 @@ For CI, you can add a "deploy key" -- a key that provides read-only access to th
     known_hosts: unnecessary
     if_key_exists: "replace"
 ```
+{% endraw %}
