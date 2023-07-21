@@ -25,6 +25,8 @@ terraform plan -out=tmp.tfplan
 terraform show -json tmp.tfplan | tfedit migration fromplan -o=tfmigrate_fromplan.hcl
 ```
 
+Before running this, you can set flags for the terraform CLI -- e.g., you can run `export TF_CLI_ARGS_plan="-target module.a -target module.b"` to limit the plan and migration to only check results from modules `a` and `b`.
+
 This will produce a migration file to be used with `tfmigrate`. You can then run `tfmigrate plan tfmigrate_fromplan.hcl` to confirm that there are no unexpected changes. If there are, modify your `BUCKETS.tf`, regenerate the migration, and try again until it succeeds. An example might be a `versioning_configuration` of `Disabled` -- `tfedit` will always assume it to be `Suspended` -- or adding an `owner` to a `grant`.
 
 You can then apply the migration file with `tfmigrate apply tfmigrate_fromplan.hcl`. If your `terraform plan` does include changes, you can still apply the migrations by modifying `tfmigrate_fromplan.hcl` to add `force = true`:
