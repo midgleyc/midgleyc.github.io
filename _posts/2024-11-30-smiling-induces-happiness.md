@@ -1,0 +1,15 @@
+---
+layout: post
+title: "Smiling Induces Happiness"
+tags: [personal, depression]
+---
+
+When I smile, I feel a short uplifting feeling in my chest; a small burst of happiness.
+
+The [facial feedback hypothesis](https://en.wikipedia.org/wiki/Facial_feedback_hypothesis) wonders whether smiling makes people happier. A 'strong' version says that smiling is required for happiness; a 'weak' version says that forcing people to smile makes them happier in general.
+
+The tests involved in this seem strange to me. One experiment consists of people holding a pen in their lips or teeth (to simulate a frown or smile, respectively) then judging the humour of a cartoon. I can certainly say that holding a pen in my teeth does *not* induce the happiness I experience with an actual smile, and I'm not sure I'd say a cartoon was funnier if I were happier in the first place. The other side of this is -- why did they not ask people to judge how happy they were? Do people not know? Do they not respond accurately on surveys?
+
+Asking others around me, this does not seem to be a common trait. It's possible I induced it -- it first happened (that I recall) when I was [testing depression cures](/2022/08/31/deliberate-forgetting). After about a month stint of depression, I woke up and realised I could feel happy again. I stared out the window and noted that the grass looked greener than ever, and smiled repeatedly, noting the small bursts of joy that came with this. It's possible this worked only because I believed it would happen -- when it comes to things inside your own mind, believing that things are possible seems necessary and sufficient for them to occur (this leads to the idea of [mental health unawareness campaigns](https://www.astralcodexten.com/p/book-review-crazy-like-us) -- as knowing that dangerous things are possible makes them more likely, you should treat them like a cognitohazard and tell people they're impossible). Truly fantastical things can happen with enough effort: for example I turned myself optimistic, I gained the ability to induce happiness (those who do it through jhanas often believe this is a very important ability for society in general -- perhaps I am blessed, for I have sacrificed less than they to obtain it, but I don't see it that way). The tulpamancers can create a person who lives in their head, and I think those who consider themselves 'plural' or 'systems' are in the same boat.
+
+The weakness of merely smiling is that the happiness gained does not stack, or is not sufficient, or fades too quickly. I cannot smile repeatedly and drag myself out of low mood into a sustainable high mood. I have a separate technique for this: if I replay a memory that induces euphoria (or at least a noticeably larger burst of happiness than smiling), I can stack joy until I feel good again. This has worked twice now, and I believe it will continue to work (necessarily, as I suspect that will affect whether it works), and I'm not sure it would work for anyone other than me -- I don't know why I feel happy when I replay this created memory in the first place, although I am very glad I do.

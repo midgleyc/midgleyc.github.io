@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Deliberate Forgetting"
-tags: [personal]
+tags: [personal, depression]
 ---
 
 In my third year of university, I tried to forget a specific thing, and succeeded.
