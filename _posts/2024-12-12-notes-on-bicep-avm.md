@@ -47,3 +47,15 @@ The documentation is of highly variable quality. The source is available, which 
 The testing requirements are nonzero but not significant. Updates are not required to work correctly. Not all parameters are required to be tested. Test coverage isn't exposed anywhere, so the module itself should be examined.
 
 None of these are reasons to avoid AVM completely -- however, you should audit an AVM as you would another third party module, as I don't think the minimum standards are sufficient to be able to trust them without investigation.
+
+# Additional comments on Terraform AVM
+
+Looking at the first AVM terraform module alphabetically, `terraform-azurerm-avm-res-app-containerapp`, we see it has three dependencies we'd expect in a TF project (terraform, azurerm, random) and two mysterious extras (azapi, modtm).
+
+Modtm provides Azure with telemetry, as specified in https://aka.ms/avm/telemetry. It runs some Go code to apparently create a single deployment with particular tags representing information from your organisation. Azapi targets the ARM REST API directly, and is for things which aren't supported in AzureRM. This lets Microsoft do in Terraform what they can do in Bicep, which is useful.
+
+The documentation is automatically generated (a spec requirement of AVM), and repeats itself a few times in what is probably a bug. This doesn't make it terribly readable. Comparing the example code with the documentation, we can also see that it's also missing important information, some of the inputs specified as blocks should actually be lists, and in general the types of inputs aren't specified, which is a bit awkward.
+
+Implementation-wise, we see it mostly passes the input straight through, with minimal extras (although there is a lot of code to accomplish this). Given the difficulty of readability vs a more standard setup of just using the resources directly, I would recommend against this module.
+
+Another module is `avm-res-authorization-roleassignment`, selling itself as a convenience wrapper around `azurerm_role_assignment` if you happen to have a problem in the same vein as the author's. The documentation is good, and I think this one could be useful. There is no way to tell, from the list of modules, which could be useful like this, and which are not. You get a display name and an author -- not a description, no rating, nothing. You know that all the modules met some minimum standard with regards to testing / layout, but not whether they will actually be useful.
