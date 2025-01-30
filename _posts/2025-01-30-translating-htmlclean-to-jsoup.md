@@ -32,7 +32,7 @@ The following table shows how to convert common DOM / XPath functions from HtmlC
 | `BaseToken` | `Node` | |
 | `BaseToken.getName()` | `Node.nodeName()` | if you're operating on Nodes instead of Elements|
 | `ContentNode` | `TextNode` | |
-| `ContentNode.getContent()` | `TextNode.getWholeText()` | text() collapses spaces | |
+| `ContentNode.getContent()` | `TextNode.getWholeText()` | text() collapses spaces |
 | `CommentNode` | `Comment` | |
 | `CommentNode.getContent()` | `Comment.getData()` | |
 
