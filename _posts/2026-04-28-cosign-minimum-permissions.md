@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AWS CLI output format changes behaviour"
+title: "Minimum AWS permissions for Cosign"
 tags: [technical]
 ---
 
