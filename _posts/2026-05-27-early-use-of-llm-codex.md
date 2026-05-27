@@ -1,0 +1,31 @@
+---
+layout: post
+title: "Early thoughts on Codex"
+tags: [technical, llm]
+---
+
+Like many software developers, I've trialed OpenAI's [Codex](https://www.npmjs.com/package/@openai/codex) in the past few months it's been [free](https://www.arturmarkus.com/openai-makes-codex-free-for-all-chatgpt-users-for-2-months-1-million-developers-already-using-gpt-5-2-powered-ai-coding-agent/), starting in mid-February. I code as a hobby, so I want it to take care of the more boring grunt-work, and to do some refactoring that I want done but don't particularly want to do.
+
+The free tier allows a limited set of tokens, resetting weekly. I spread out my refactoring across a couple of weeks, exhausting one limit. I don't think I have anywhere near enough things I want done to justify paying for it, but I did feel a niggle after all tokens were consumed, likely as desired by OpenAI.
+
+One thing it does particularly well are tests. In [KoLmafia](https://github.com/kolmafia/kolmafia) we have a custom framework for tests: we set up the character with various methods like `withItem` and `withEffect` and use `try (cleanups)` for automated setup and teardown. Codex handily looks at and mimics existing tests, and generally picks the right setup methods and asserts appropriately. It can sometimes mimic tests written to a pattern you'd rather not it didn't, but I'll accept that's my own fault for the codebase being old and inconsistent. Many of our tests use HTML fixtures extracted from a `DEBUG_YYYYMMDD.txt` file: it can examine the file and extract the HTML from a log containing various other things: requests, headers, responses, other logging. This is very convenient. Overall I am extremely satisfied with its test writing ability: I don't like writing tests myself but appreciate their usefulness, so I'm glad to hand it off to the bot.
+
+One strange thing about the tests: sometimes, when you ask it to generate data for a test, it will write a function that generates the data and expected output, and then check *that* in, instead of running the function to get a hardcoded dataset and using that, which I'd definitely prefer to avoid wasted cycles when running the tests (and code clarity). I can understand preferring code for a greater chance of correctness.
+
+One other thing it does particularly well is combining disparate datasets. Suppose I have one dataset as tsv (tab separated values) and another set of log messages indicating error messages in the first: I can hand it both files and tell it to fix the data, and it one-shots it with no issues. Fantastic! Many people tell me that there's a good chance it's hallucinating errors in there, but looking at the process it generates the new data using an `awk` script (or a `python` script if more complex), so I don't think there will be any issues.
+
+One other minor thing I like is saying "where is a function that does X", and it will look through our vast codebase for something that looks right. This is truly something I don't think I'd be able to do myself at all: there's a lot of code and it's hard to know what to search for.
+
+In our codebase, we have a mix of concrete types and `var`, with newer code generally preferring `var`. Codex similarly generates code with a mix of concrete types and `var`, sort of following the code around it. I suspect most of the code it was trained with that looks similar to our codebase has concrete types: when I first started using LLMs they really really wanted our codebase (first written in 2002 with Java 5) to be using Spring, and it really really wasn't (it's a desktop Java app). It has come a long way since then.
+
+For the actual code it does slightly less well. For the refactoring, it was very inconsistent between files, and often did a minimal job instead of a thorough refactoring. This is very human: I wanted to do the job so little I didn't do it at all, and just handed it off to Codex.
+
+For a simple, well-defined task it will sometimes produce a more complicated solution that would solve a more general problem I don't require solved. A nudge will get it to simplify, but you have to stay aware of potential issues like this. It's good at writing regex and other commonly used parsers, like Jsoup. It's good at converting a solution using one to a solution using another.
+
+The only real disappointment was generation of a function highlighting middle letters for the heartstone. This is a problem I wanted solved much more than I wanted to solve myself; after three hours of wrangling I thought I'd have been better off just solving it myself from scratch. This is a problem that looks extremely similar to those on the SWE benchmarks, hence my disappointment that it got it wrong repeatedly, and overcomplicated the solution when I managed to get it into a correct state. It did write the tests well when I gave it examples of how it was wrong, though.
+
+The problem is this: given a monster such as "Goth Giant", highlight the middle letter, ignoring spaces (e.g. "Goth <u>G</u>iant"). A monster name might contain HTML characters such as `&trade;`: these should be parsed and considered to have length equal to their byte count.
+
+It made a very human error at first: strip spaces, find the middle letter, then highlight the first instance of that middle letter in the full name. This is much easier than the proper solution, but fails if the first instance of that letter occurs in the first half. It also wanted to parse HTML characters as it went along, instead of just decoding the name at the start, possibly because this is done for efficiency in similar solutions, but isn't useful here (you have to have decoded the whole space-stripped string to find the length; you may as well decode first, and then calculate the length of the space-stripped string off that before going through the decoded string, instead of decoding to calculate the length and then starting from scratch again to find the middle character).
+
+One other downside is that in scripts, it has a tendency to hide error output (e.g., adding `2>/dev/null` in bash scripts). It will add a check against `$?`, so it isn't entirely suppressing errors, but having the error output is useful in my opinion. I suspect this is just extremely common in its training data.
