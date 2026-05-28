@@ -4,7 +4,7 @@ title: "Early thoughts on Codex"
 tags: [technical, llm]
 ---
 
-Like many software developers, I've trialed OpenAI's [Codex](https://www.npmjs.com/package/@openai/codex) in the past few months it's been [free](https://www.arturmarkus.com/openai-makes-codex-free-for-all-chatgpt-users-for-2-months-1-million-developers-already-using-gpt-5-2-powered-ai-coding-agent/), starting in mid-February. I code as a hobby, so I want it to take care of the more boring grunt-work, and to do some refactoring that I want done but don't particularly want to do.
+Like many software developers, I've trialed OpenAI's [Codex](https://www.npmjs.com/package/@openai/codex) in the past few months it's been [free](https://www.arturmarkus.com/openai-makes-codex-free-for-all-chatgpt-users-for-2-months-1-million-developers-already-using-gpt-5-2-powered-ai-coding-agent/), starting in mid-February (with 5.3-codex). I code as a hobby, so I want it to take care of the more boring grunt-work, and to do some refactoring that I want done but don't particularly want to do.
 
 The free tier allows a limited set of tokens, resetting weekly. I spread out my refactoring across a couple of weeks, exhausting one limit. I don't think I have anywhere near enough things I want done to justify paying for it, but I did feel a niggle after all tokens were consumed, likely as desired by OpenAI.
 
